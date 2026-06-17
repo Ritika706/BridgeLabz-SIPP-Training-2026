@@ -1,4 +1,4 @@
-package main.Java.coreJavaPractice.Core_Java.gcr_codebase.Control_Flow.LEVEL3;
+package main.Java.coreJavaPractice.gcr_codebase.Control_Flow.LEVEL3;
 
 import java.util.Scanner;
 
