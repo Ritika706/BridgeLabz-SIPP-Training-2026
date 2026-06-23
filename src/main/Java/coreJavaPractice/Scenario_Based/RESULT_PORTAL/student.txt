@@ -1,0 +1,5 @@
+Ritika
+Math:80
+Science:75
+SST:90
+GK:80
