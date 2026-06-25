@@ -19,7 +19,7 @@ class Employ {
     }
 }
 
-public class Employee {
+public class Employeeinfo {
 
     public static void main(String[] args) {
 
