@@ -1,4 +1,4 @@
-package main.java.DSA.Scenerio_Based;
+package main.java.DSA.Scenerio_Based.Sorting;
 
 import java.util.Arrays;
 

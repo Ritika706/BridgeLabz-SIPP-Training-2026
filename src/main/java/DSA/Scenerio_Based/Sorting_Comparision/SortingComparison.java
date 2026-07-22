@@ -1,4 +1,4 @@
-package main.java.DSA.Scenerio_Based;
+package main.java.DSA.Scenerio_Based.Sorting_Comparision;
 
 import java.util.Arrays;
 import java.util.Random;
