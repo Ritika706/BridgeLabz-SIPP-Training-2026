@@ -1,4 +1,7 @@
-SELECT DISTINCT country
+USE covid_db;
+
+SELECT
+    country
 FROM covid_deaths
 WHERE country NOT IN
 (

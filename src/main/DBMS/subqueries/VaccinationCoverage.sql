@@ -1,11 +1,17 @@
-SELECT country,
-       vaccinated AS people,
-       'Vaccinated' AS status
-FROM covid_vaccination
+USE covid_db;
+
+SELECT
+    v.country,
+    v.vaccinated_people,
+    'Vaccinated' AS status
+FROM covid_vaccines v
 
 UNION
 
-SELECT country,
-       (population - vaccinated) AS people,
-       'Unvaccinated' AS status
-FROM covid_vaccination;
+SELECT
+    c.country,
+    (c.population - v.vaccinated_people),
+    'Unvaccinated'
+FROM countries c
+JOIN covid_vaccines v
+ON c.country = v.country;

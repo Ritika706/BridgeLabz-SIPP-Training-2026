@@ -1,7 +1,11 @@
-SELECT country, deaths
+USE covid_db;
+
+SELECT
+    country,
+    total_deaths
 FROM covid_deaths
-WHERE deaths >
+WHERE total_deaths >
 (
-    SELECT AVG(deaths)
+    SELECT AVG(total_deaths)
     FROM covid_deaths
 );

@@ -1,33 +1,29 @@
-DROP TABLE IF EXISTS covid_cases_audit;
+Use covid_db;
+CREATE TABLE covid_cases_audit (
 
-CREATE TABLE covid_cases_audit
-(
     audit_id INT AUTO_INCREMENT PRIMARY KEY,
 
     country VARCHAR(100),
 
     report_date DATE,
 
-    old_confirmed INT,
+    old_confirmed_cases INT,
 
-    new_confirmed INT,
+    new_confirmed_cases INT,
 
     old_deaths INT,
 
     new_deaths INT,
 
-    old_recovered INT,
+    old_recoveries INT,
 
-    new_recovered INT,
+    new_recoveries INT,
 
-    changed_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-DROP TRIGGER IF EXISTS CovidAuditTrigger;
-
 DELIMITER $$
 
-CREATE TRIGGER CovidAuditTrigger
+CREATE TRIGGER trg_covid_cases_audit
 
 BEFORE UPDATE
 
@@ -37,40 +33,46 @@ FOR EACH ROW
 
 BEGIN
 
-INSERT INTO covid_cases_audit
-(
-country,
-report_date,
-old_confirmed,
-new_confirmed,
-old_deaths,
-new_deaths,
-old_recovered,
-new_recovered
-)
+    INSERT INTO covid_cases_audit(
 
-VALUES
-(
-OLD.country,
-OLD.report_date,
-OLD.confirmed_cases,
-NEW.confirmed_cases,
-OLD.deaths,
-NEW.deaths,
-OLD.recovered,
-NEW.recovered
-);
+        country,
 
-END $$
+        report_date,
+
+        old_confirmed_cases,
+
+        new_confirmed_cases,
+
+        old_deaths,
+
+        new_deaths,
+
+        old_recoveries,
+
+        new_recoveries
+
+    )
+
+    VALUES(
+
+        OLD.country,
+
+        OLD.report_date,
+
+        OLD.confirmed_cases,
+
+        NEW.confirmed_cases,
+
+        OLD.deaths,
+
+        NEW.deaths,
+
+        OLD.recoveries,
+
+        NEW.recoveries
+
+    );
+
+END$$
 
 DELIMITER ;
-
--- Test Trigger
-
-UPDATE covid_cases
-SET confirmed_cases = confirmed_cases + 100
-WHERE country='India';
-
--- View Audit Records
-
-SELECT * FROM covid_cases_audit;
